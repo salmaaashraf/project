@@ -20,11 +20,20 @@ public class Ticket {
     private String date;
     static int newid=0;
     private int idSlot;
+    private String Operatorname;
+    
     Ticket(){
         this.arrivalTime="0";
         this.departureTime="0";
         this.id=newid;
         newid++;
+    }
+    public void setOperatorname(String n){
+        this.Operatorname=n;
+    }
+    
+    public String getOperatorname(){
+        return this.Operatorname;
     }
     
      public void setidSlot(int n){

@@ -31,19 +31,22 @@ public class Customer implements IoperatorCustomer{
         Operator optr=new Operator();
         Customer c1 =new Customer(name,plateno);
         Slot s =optr.retrnSlot();
-        t.setDate();
-        t.setarrivaltime(calcTime());
-        t.setidSlot(s.id_slot);
-        cuInfo.put(t.getid(),c1);
-        tInfo.put(t.getid(),t);
-        optr=optr.loggedInOperator();
         if(s==null){
             System.out.println("Sorry,all slots are full");
             return ;
         }
-        System.out.println("Ticket ID: " +t.getid() +"\nSlot ID: "+s.id_slot+"\nSlot Row: "+s.slot_description +"\nPlate Number: "+c1.plateNumber + "\nTransaction Time: "+t.getarrivalTime()/*+"\nOperator name: "+optr.name*/+"\nDate: "+t.getdate());
+        t.setDate();
+        t.setarrivaltime(calcTime());
+        t.setidSlot(s.id_slot);
+        optr=optr.loggedInOperator();
+        t.setOperatorname(optr.name);
+        cuInfo.put(t.getid(),c1);
+        tInfo.put(t.getid(),t);
+      
+        System.out.println("Ticket ID: " +t.getid() +"\nSlot ID: "+s.id_slot+"\nSlot Row: "+s.slot_description +"\nPlate Number: "+c1.plateNumber + "\nTransaction Time: "+t.getarrivalTime()+"\nOperator name: "+t.getOperatorname()+"\nDate: "+t.getdate());
     }
     public void pay(int ticketId){
+      if(tInfo.containsKey(ticketId)){
         Ticket t;
         Operator optr=new Operator();
         t=tInfo.get(ticketId);
@@ -51,13 +54,16 @@ public class Customer implements IoperatorCustomer{
         int money=optr.calculateMoney(ticketId);
         optr.freeSlot(t.getidSlot());
         System.out.println("You should pay: "+money+" LE");
+      }else{
+          System.out.println("Wrong Ticket ID");
+      }
     }
     public String calcTime(){
         Date date= new Date();
          SimpleDateFormat d=new SimpleDateFormat("hh:mm:ss",Locale.US);
          return d.format(date);
     }
-    public void printt(){
+    /*public void printt(){
        for(Map.Entry <Integer,Ticket> p:tInfo.entrySet()){  
             Ticket t=new Ticket();
             t=p.getValue();          
@@ -65,6 +71,6 @@ public class Customer implements IoperatorCustomer{
             
         }
         
-    }
+    }*/
 }
 
