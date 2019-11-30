@@ -3,6 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+///////// lazm admin ye3mel log out 3ashan operator ye3mel log in??????   hal fe login f gui yenfa3 23mel check mn el map 
+//////// hal kaza 7ad beye3mel log in f nafs el wa2t kaza admin kaza operator
 package com.mycompany.project_parking;
 
 /**
@@ -22,6 +24,7 @@ public class NewMain {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+       
        System.out.println("welcome to our project\n");
         Admin a1 = new Admin();
         Admin a2 = new Admin();
@@ -31,17 +34,19 @@ public class NewMain {
         //a1.AddAdmins(3, "amr", "amr200@gmail.com", "amro", "0100158556");
         //a2.viewAdmins();
 
-        a1.AddSlot("3rd row");
-        a2.AddSlot("2nd row");
-        a2.AddSlot("1st row");
+        //a1.AddSlot("3rd row");
+        //a2.AddSlot("2nd row");
+        //a2.AddSlot("1st row");
         //a2.viewSlots();
        // a1.viewSlots();
         a1.AddOperator(8, "ahmed", "ahmed200@gmail.com", "ahmoo", "0100152556");
-        //a1.AddOperator(9, "mohammed", "ahmed200@gmail.com", "ahmoo", "0100152556");
-        Operator op = new Operator();
+        a1.AddOperator(9, "mohammed", "ahmed200@gmail.com", "ahmoo", "0100152556");
+        //a1.Logout();
+        new BackgroundImageJFrame();
+        //Operator op = new Operator();
        // a1.viewOperators();
-        op.login(8, "ahmoo");
-         op.viewSlots();
+        //op.login(8, "ahmoo");
+        // op.viewSlots();
         //op.loggedInOperator();
         /*a2.viewOperators();
         a1.DeleteOperator(0);
@@ -49,7 +54,7 @@ public class NewMain {
          a2.UpdateOperator(2);
          a2.viewOperators();
         // Ticket t=new Ticket();*/
-         Customer c1=new Customer();
+        /* Customer c1=new Customer();
          c1.printTicket("salma","abc123");
          c1.pay(0);
          System.out.println();

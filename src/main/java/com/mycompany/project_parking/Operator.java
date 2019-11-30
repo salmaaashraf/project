@@ -130,6 +130,26 @@ public class Operator extends Person implements IoperatorCustomer{
        super.viewSlots();
        System.out.println("Number of free slots: "+freeSlots);
     }
+    @Override
+    public void Logout(){
+        super.Logout();
+        BufferedWriter br;
+        try {
+                  br = new BufferedWriter(new FileWriter ("Operators.txt"));
+                  for(Map.Entry <Integer, Operator> p:operator.entrySet()){  
+                      Operator op= new Operator();
+                      op=p.getValue(); 
+                     
+                      br.write("~"+p.getKey()+"~"+op.name+"~"+op.email+"~"+op.password+"~"+op.phone_number);
+                    
+                      br.newLine();
+                  }
+                  br.flush();
+                  br.close();
+                } catch (IOException ex) {
+                    System.out.println("Error opening file");
+                }
+    }
 }
 
 

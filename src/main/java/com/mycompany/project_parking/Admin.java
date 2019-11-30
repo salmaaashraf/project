@@ -42,6 +42,21 @@ public class Admin extends Person implements IoperatorCustomer{
        op.email=email;
        op.phone_number=phone_number;
        operator.put(iD,op);
+        BufferedWriter br;
+        try {
+                  br = new BufferedWriter(new FileWriter ("Operators.txt"));
+                  for(Map.Entry <Integer, Operator> p:operator.entrySet()){  
+                      op=p.getValue(); 
+                     
+                      br.write("~"+p.getKey()+"~"+op.name+"~"+op.email+"~"+op.password+"~"+op.phone_number);
+                    
+                      br.newLine();
+                  }
+                  br.flush();
+                  br.close();
+                } catch (IOException ex) {
+                    System.out.println("Error opening file");
+                }
     }
     void UpdateOperator(int id){
         
@@ -63,6 +78,22 @@ public class Admin extends Person implements IoperatorCustomer{
              }catch(InputMismatchException e){
                  System.out.println("Error,you must enter a number");
              }
+              BufferedWriter br;
+               try {
+                  br = new BufferedWriter(new FileWriter ("Operators.txt"));
+                  for(Map.Entry <Integer, Operator> p:operator.entrySet()){  
+                      Operator op= new Operator();
+                      op=p.getValue(); 
+                     
+                      br.write("~"+p.getKey()+"~"+op.name+"~"+op.email+"~"+op.password+"~"+op.phone_number);
+                    
+                      br.newLine();
+                  }
+                  br.flush();
+                  br.close();
+                } catch (IOException ex) {
+                    System.out.println("Error opening file");
+                }
          }else{
              System.out.println("Wrong id");
          }
@@ -120,6 +151,22 @@ public class Admin extends Person implements IoperatorCustomer{
        if(operator.containsKey(id)){
            operator.remove(id);
            System.out.println("operator deleted successfully");
+           BufferedWriter br;
+        try {
+                  br = new BufferedWriter(new FileWriter ("Operators.txt"));
+                  for(Map.Entry <Integer, Operator> p:operator.entrySet()){  
+                      Operator op= new Operator();
+                      op=p.getValue(); 
+                     
+                      br.write("~"+p.getKey()+"~"+op.name+"~"+op.email+"~"+op.password+"~"+op.phone_number);
+                    
+                      br.newLine();
+                  }
+                  br.flush();
+                  br.close();
+                } catch (IOException ex) {
+                    System.out.println("Error opening file");
+                }
        }else{
            System.out.println("Sorry,operator not found");
        }
@@ -157,6 +204,29 @@ public class Admin extends Person implements IoperatorCustomer{
     }
     
     public void login(int id,String password){ 
+        
+        //first step to store info of first admin that would be in file before running the program
+         Scanner input;
+        try{
+          input= new Scanner(new BufferedReader(new FileReader ("Admins.txt")));                
+          input.useDelimiter("~");
+          Admin a=new Admin();       
+          while(input.hasNextLine()){  
+              a.id=input.nextInt();
+              a.name=input.next();
+              a.email=input.next();
+              a.password=input.next();
+              a.phone_number=input.next();
+               if (admin.containsKey(id)){
+                 System.out.println("already");
+               }else{
+                 admin.put(a.id,a);  
+               }
+          }
+          input.close();
+        }catch(IOException ex){
+            System.out.println("Error opening file");
+        }
          if (admin.containsKey(id)){
            Admin ad = admin.get(id);
             if(password.equals(ad.password)){
@@ -240,6 +310,21 @@ public class Admin extends Person implements IoperatorCustomer{
        ad.email=email;
        ad.phone_number=phone_number;
        admin.put(iD,ad);
+       BufferedWriter br;
+        try {
+                  br = new BufferedWriter(new FileWriter ("Admins.txt"));
+                  for(Map.Entry <Integer, Admin> p:admin.entrySet()){  
+                      ad=p.getValue(); 
+                     
+                      br.write("~"+p.getKey()+"~"+ad.name+"~"+ad.email+"~"+ad.password+"~"+ad.phone_number);
+                    
+                      br.newLine();
+                  }
+                  br.flush();
+                  br.close();
+                } catch (IOException ex) {
+                    System.out.println("Error opening file");
+                }
     } 
     void viewAdmins(){ 
         BufferedWriter br;
@@ -283,4 +368,39 @@ public class Admin extends Person implements IoperatorCustomer{
         }   */     
         
     }
+    public void Logout(){
+        super.Logout();
+        BufferedWriter br;
+        try {
+                  br = new BufferedWriter(new FileWriter ("Admins.txt"));
+                  for(Map.Entry <Integer, Admin> p:admin.entrySet()){  
+                      Admin ad= new Admin();
+                      ad=p.getValue(); 
+                     
+                      br.write("~"+p.getKey()+"~"+ad.name+"~"+ad.email+"~"+ad.password+"~"+ad.phone_number);
+                    
+                      br.newLine();
+                  }
+                  br.flush();
+                  br.close();
+                } catch (IOException ex) {
+                    System.out.println("Error opening file");
+                }
+         BufferedWriter b;
+        try {
+                  b = new BufferedWriter(new FileWriter ("Operators.txt"));
+                  for(Map.Entry <Integer, Operator> p:operator.entrySet()){  
+                      Operator op= new Operator();
+                      op=p.getValue(); 
+                     
+                      b.write("~"+p.getKey()+"~"+op.name+"~"+op.email+"~"+op.password+"~"+op.phone_number);
+                    
+                      b.newLine();
+                  }
+                  b.flush();
+                  b.close();
+                } catch (IOException ex) {
+                    System.out.println("Error opening file");
+                }
+   }
 }
