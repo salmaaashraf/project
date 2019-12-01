@@ -42,7 +42,8 @@ public class NewMain {
         a1.AddOperator(8, "ahmed", "ahmed200@gmail.com", "ahmoo", "0100152556");
         a1.AddOperator(9, "mohammed", "ahmed200@gmail.com", "ahmoo", "0100152556");
         //a1.Logout();
-        new BackgroundImageJFrame();
+       // new BackgroundImageJFrame();
+        new FrameOperator();
         //Operator op = new Operator();
        // a1.viewOperators();
         //op.login(8, "ahmoo");

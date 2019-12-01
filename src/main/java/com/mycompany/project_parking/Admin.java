@@ -29,10 +29,27 @@ public class Admin extends Person implements IoperatorCustomer{
     void AddSlot(String slot_description){ 
        Slot s=new Slot(slot_description);
        s.id_slot= idOfSlot;
+       s.check=false;
        slots.add(s);
        idOfSlot++;
        no_of_Slots++;
        freeSlots++;
+         try{
+           File file  =new File("Slots.txt");
+           BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+        
+        for(Slot sl:slots){
+            int id=sl.id_slot;
+            String row=sl.slot_description;
+           bw.write("~"+String.valueOf(sl.id_slot)+"~"+sl.slot_description +"~"+String.valueOf(sl.check));
+           bw.newLine();
+        }
+        bw.flush();
+        bw.close();
+    }catch(IOException ex){
+        System.out.println("Error opening file");
+        
+    }
     }
     void AddOperator(int iD,String name,String email,String password,String phone_number){
        Operator op= new Operator();
@@ -370,7 +387,7 @@ public class Admin extends Person implements IoperatorCustomer{
     }
     public void Logout(){
         super.Logout();
-        BufferedWriter br;
+       /* BufferedWriter br;
         try {
                   br = new BufferedWriter(new FileWriter ("Admins.txt"));
                   for(Map.Entry <Integer, Admin> p:admin.entrySet()){  
@@ -401,6 +418,6 @@ public class Admin extends Person implements IoperatorCustomer{
                   b.close();
                 } catch (IOException ex) {
                     System.out.println("Error opening file");
-                }
+                }*/
    }
 }

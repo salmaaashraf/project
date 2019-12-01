@@ -105,6 +105,7 @@ public class BackgroundImageJFrame extends JFrame implements ActionListener{
               if(check==1){
                   JOptionPane.showMessageDialog(this,"Logged in successfully");
                   //frame of admin
+                  
               }else{
                   JOptionPane.showMessageDialog(this,"Wrong Id or Password");
               }
@@ -135,6 +136,7 @@ public class BackgroundImageJFrame extends JFrame implements ActionListener{
                   JOptionPane.showMessageDialog(this,"Logged in successfully");
                   op.login(Integer.valueOf(id),pass);
                   //frame of operator
+                  new FrameOperator();
               }else{
                   JOptionPane.showMessageDialog(this,"Wrong Id or Password");
               }

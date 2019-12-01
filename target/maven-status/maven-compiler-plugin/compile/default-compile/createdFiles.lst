@@ -1,4 +1,5 @@
 com\mycompany\project_parking\Admin.class
+com\mycompany\project_parking\FrameOperator.class
 com\mycompany\project_parking\IoperatorCustomer.class
 com\mycompany\project_parking\BackgroundImageJFrame.class
 com\mycompany\project_parking\Person.class
